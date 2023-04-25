@@ -1,7 +1,7 @@
 #include "Container.h"
 #include "iostream"
 
-void test1() {
+void test1() {      // get/add test
     Container<int> test1;
     test1.addFirst(1);
     test1.addLast(2);
@@ -15,7 +15,7 @@ void test1() {
     std::cout << test1.getFirst() << std::endl;
 }
 
-void test2() {
+void test2() {      // iterator test
     Container<int> test2;
     for (int i = 0; i < 10; i++) {
         test2.addLast(i);
@@ -37,9 +37,28 @@ void test2() {
     }
 }
 
+void test3() {      // reverse test
+    Container<int> test3;
+    for (int i = 0; i < 10; i++) {
+        test3.addLast(i);
+    }
+
+    for (Container<int>::iterator k = test3.begin(); k != ++test3.end(); ++k) {
+        std::cout << *k << std::endl;
+    }
+
+    std::cout << std::endl;
+    test3.reverse();
+
+    for (Container<int>::iterator k = test3.begin(); k != ++test3.end(); ++k) {
+        std::cout << *k << std::endl;
+    }
+}
+
 int main() {
 
 //    test1();
-    test2();
+//    test2();
+    test3();
 
 }
