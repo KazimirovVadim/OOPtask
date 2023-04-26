@@ -26,7 +26,7 @@ void test2() {      // iterator test
     for (Container<int>::iterator k = test2.begin(); k != test2.end(); ++k) {
         std::cout << *k << std::endl;
 //        std::cout << "iteration " <<  count << std::endl;
-        k = count;
+        k.setdata(count);
         count++;
     }
 
@@ -57,8 +57,8 @@ void test3() {      // reverse test
 
 int main() {
 
-//    test1();
+    test1();
 //    test2();
-    test3();
+//    test3();
 
 }

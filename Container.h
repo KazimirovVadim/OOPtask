@@ -134,7 +134,7 @@ public:
         }
     }
 
-    void reverse () {
+    void reverse() {
         Element *iteratorContainer = _lastEl;
 
         for (int i = 0; i < numberOfElements; i++){
@@ -195,9 +195,8 @@ public:
             return &(_ptr->data);
         }
 
-        iterator& operator=(const T& data) noexcept {   // will be changed later probably
+        void setdata(const T& data) noexcept {   // will be changed later probably
             _ptr->data = data;
-            return *this;
         }
     };
 
