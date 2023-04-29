@@ -122,8 +122,8 @@ public:
     }
 
     bool isEmpty() {
-        if (numberOfElements > 0) return 1;
-        else return 0;
+        if (numberOfElements > 0) return 0;
+        else return 1;
     }
 
     void swap (Container<T> &other) {
@@ -169,7 +169,7 @@ public:
             return *this;
         }
 
-        iterator& operator++(int) noexcept {    // postfix
+        iterator operator++(int) noexcept {    // postfix
             iterator result(*this);
             ++(*this);
             return result;
@@ -181,7 +181,7 @@ public:
             return *this;
         }
 
-        iterator& operator--(int) noexcept {    // postfix
+        iterator operator--(int) noexcept {    // postfix
             iterator result(*this);
             --(*this);
             return result;
@@ -207,4 +207,24 @@ public:
     iterator end() {
         return (iterator(this->_lastEl));
     }
+
+    T popFirst() {
+        if (isEmpty()){
+            throw std::logic_error("Container has no elements.");
+        }
+
+        if (_firstEl == _lastEl) {
+            _lastEl = NULL;
+        }
+        Element* temp = _firstEl;
+        T tempData = temp->data;
+        _firstEl = _firstEl->next;
+        if (_firstEl != NULL) {
+            _firstEl->prev = NULL;
+        }
+        delete temp;
+        numberOfElements--;
+        return (tempData);
+    }
+
 };
