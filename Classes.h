@@ -5,16 +5,13 @@
 #include "Container.h"
 
 class Object {
-
     static int counter;
 
 public:
-
     Object() {
         counter++;
     }
-
-    ~Object() {
+    virtual ~Object() {
         counter--;
     }
 
@@ -24,6 +21,7 @@ public:
 
     virtual std::string toString() const=0;
 };
+inline int Object::counter = 0;
 
 class Task:public Object{
 protected:
@@ -48,6 +46,7 @@ public:
         return name;
     }
 };
+inline Named::~Named(){}
 
 class ResultedTask:virtual public Task{
 
@@ -192,6 +191,11 @@ public:
     }
 
     void apply() override {
+        for (auto iterator = container->begin(); iterator != ++container->end();){
+            auto newIterator = iterator;
+            ++iterator;
+            delete *newIterator;
+        }
         container->clearContainer();
     }
 
